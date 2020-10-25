@@ -1,26 +1,12 @@
-actions/checkout@master
-      - name: npm install
-        uses: actions/npm@master
-        with:
-          args: install
-      - name: npm test
-        uses: actions/npm@master
-        with:
-          args: run test
-      - name: npm lint
-        uses: actions/npm@master
-        with:
-          args: run lint
-      - name: docker build
-        uses: actions/docker/cli@master
-        with:
-          args: build -t shafiknoor/pythonflask .
-      - name: docker login
-        uses: actions/docker/login@master
-        env:
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      - name: docker push
-        uses: actions/docker/cli@master
-        with:
-          args: push shafiknoor/pythonflask
+name: Build
+on: [push, pull_request]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: docker/build-push-action@v1
+      with:
+        push: false
