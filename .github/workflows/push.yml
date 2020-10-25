@@ -1,4 +1,4 @@
-ctions/checkout@master
+actions/checkout@master
       - name: npm install
         uses: actions/npm@master
         with:
