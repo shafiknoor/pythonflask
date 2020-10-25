@@ -1,4 +1,4 @@
-name: Python Flask CI/CD
+name: Python Flask CI / CD
 
 on:
   push:
