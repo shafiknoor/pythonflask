@@ -22,10 +22,6 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Build
       run: docker build -t pythonflask .
-    - name: Tags
-      run: |
-          docker tag back ${{ secrets.DOCKER_USER }}/pythonflask:${{ github.sha }}
-          docker tag back ${{ secrets.DOCKER_USER }}/pythonflask:latest
     - name: Push
       run: |
           docker push ${{ secrets.DOCKER_USER }}/pythonflask:${{ github.sha }}
